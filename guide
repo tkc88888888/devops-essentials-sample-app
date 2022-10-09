@@ -1,0 +1,80 @@
+The DevOps Pipeline
+Introduction
+In this hands-on lab, you will create a DevOps pipeline all the way from making a code change to deploying that change to a production environment. One of the great benefits of DevOps comes from its focus on automated pipelines, and here you will have the opportunity to try one out so you can see it in action from a hands-on perspective. After completing this hands-on lab, you should have a basic idea of what it is like to use a DevOps pipeline to change the code and get those changes into production.
+
+Solution
+You'll need a GitHub account to complete this lab. Get the sample application source code from GitHub. Once there, click the Fork button. If it does not create the fork automatically, select your account to make sure the files are forked to your repository. This way, we have our own version of the files we can make changes to.
+
+Then, click the branches, where we'll see there are four branches listed.
+
+Execute the Initial Deployment
+Set Up a Continuous Integration Server
+Copy the public IP address of the CI server provided on the lab page, and paste it into a new browser tab with :8080 appended to the end.
+
+We'll land at a Jenkins installation. Click the listed devops-essentials-sample.
+
+Click Configure in the left-hand menu.
+
+Click the Branch Sources tab.
+
+Change the Project Repository to the URL of the fork we created.
+
+Click Save. Back on the main page, we will see Jenkins is scanning and building the branches from the fork.
+
+Create a Pull Request
+On the lab page, copy the public IP address of the production webserver, and paste it into a new tab. We get a page saying, DevOps is great.
+
+Back in GitHub, next to the new-feature branch, click New pull request.
+
+Set the base fork dropdown to your personal fork.
+
+Set the base dropdown to the master branch.
+
+Make sure the compare dropdown is set to new-feature.
+
+If you scroll down, you will see the changes are displayed in a code comparison. Once ready, select Create pull request.
+
+Select Merge pull request, and then Confirm merge.
+
+Back in the Jenkins server, select devops-esentials-sample and then master.
+
+On the new page, select build now from the sidebar. A new build will begin.
+
+When it gets to the DeployToProd stage, it will pause and wait for our input.
+
+Copy the public IP of the staging webserver on the lab page, and paste it into a new browser tab. We should see a page that says DevOps is awesome, which means the code pull is working correctly.
+
+Back in the Jenkins window, hover over the DeployToProd section and select Proceed.
+
+Refresh our tab for the production webserver IP. We should see the updated text.
+
+Run the "Broken" Deployment
+Back on GitHub, in the branchess tab, click New pull request for the broken-feature branch.
+
+Set the base fork dropdown to your personal fork.
+
+Set the base dropdown to the master branch.
+
+Set the compare* dropdown to broken-feature. This time, when we look at the bottom of the page, we will see that we have misspelled something.
+
+Click Create pull request, then Merge pull request, and finally Confirm merge.
+
+Back in the Jenkins tab, click Build Now.
+
+Once it gets to the DeployToProd stage, hover over that section and select Proceed.
+
+Refresh the tab with the production webserver IP address. We should see a misspelled word.
+
+Roll Back the Broken Deployment
+Back on the Jenkins page, click on build #2.
+
+Click Replay and then Run.
+
+While that is building, check the staging webserver IP tab. It should revert back to the correct text.
+
+On the Jenkins page, hover over the DeployToProd section, and select Proceed.
+
+Once updated, our production webserver IP tab will show the correct text, meaning we have performed a successful rollback.
+
+Conclusion
+Congratulations on successfully completing this hands-on lab!
